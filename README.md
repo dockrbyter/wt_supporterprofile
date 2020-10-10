@@ -2,10 +2,10 @@
 Windows Terminal profile for IT supporter. Including SSH, Telnet and Serial sessions.
 For detailed informations about Windows Terminal visit https://docs.microsoft.com/en-us/windows/terminal/
 
-All connections are handled by calling PowerShell scripts. Every script has its own settings you could edit.
+All connections are handled by calling PowerShell scripts. Every script has own settings you could edit.
 For more information scroll down to "Script Settings".
 
-    !!!! The Serail session is still unter consturction !!!!
+    !!!! The Serial session is still unter construction !!!!
 
 SSH session:
  - Asks you for target address and user credentials
@@ -95,7 +95,7 @@ Static SSH to IP 192.168.178.110
 Option B - make a copy from the session script
 
 If you want to use the automatically session restart and stuff like that, copy the SSH profile, paste it to the profile list
-and edit username addres, tabTidle, etc. according to your environment.
+and edit username address, tabTidle, etc. according to your environment.
 Then make a copy from the session script "wt-session_ssh_staic_template.ps1" and rename it like "wt-session_ssh_staic_SRV-01.ps1" (or what ever you want).
 Now go to your new created profile in "settings.json" and change the scriptname in the commandline parameter to the name you have set on you copy.
 Finaly edit the variables (lines 10 to 18) in your session script and you good to go. For more information scroll down to "Script Settings".
