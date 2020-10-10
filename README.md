@@ -98,7 +98,7 @@ If you want to use the automatically session restart and stuff like that, copy t
 and edit username addres, tabTidle, etc. according to your environment.
 Then make a copy from the session script "wt-session_ssh_staic_template.ps1" and rename it like "wt-session_ssh_staic_SRV-01.ps1" (or what ever you want).
 Now go to your new created profile in "settings.json" and change the scriptname in the commandline parameter to the name you have set on you copy.
-Finaly edit the variables in your session script and you good to go. For more information scroll down to "Script Settings".
+Finaly edit the variables (lines 10 to 18) in your session script and you good to go. For more information scroll down to "Script Settings".
 
 
 
