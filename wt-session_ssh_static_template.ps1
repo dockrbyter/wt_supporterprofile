@@ -1,10 +1,10 @@
 <#
-wt-session_ssh.ps1
+wt-session_ssh_static_template.ps1
 .DESCRIPTION
 
     SSH-Connection Script template
     
-https://github.com/thelamescriptkiddiemax/powershell
+https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
