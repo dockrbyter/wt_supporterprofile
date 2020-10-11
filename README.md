@@ -102,6 +102,65 @@ Finaly edit the variables (lines 10 to 18) in your session script and you good t
 
 
 
+# Script Settings
+
+wt-session_ssh.ps1
+
+$defaultsshport
+SSH Default Port                          		value example  "22"
+$scriptspeed
+Timeout in Seconds until session restart   		value example  "10"
+$fmode
+Floating Mode - skips the Clear-Host command	value example  "x"
+
+
+wt-session_telnet.ps1
+
+$defaulttelnetport
+Telnet Default Port                       		value example  "23"
+$scriptspeed
+Timeout in Seconds until session restart   		value example  "10"
+$fmode
+Floating Mode - skips the Clear-Host command  	value example  "x"
+
+
+wt-session_serial.ps1
+
+$defaultbaud
+Default Baud Rate                 				value example  "9600"
+$fmode
+Floating Mode - skips the Clear-Host command  	value example  "x"
+$scriptspeed
+Timeout for the overlays            			value example  "1"
+
+
+wt-session_ssh_static_template.ps1
+
+$sshport
+SSH Port                                  		value example  "22"
+$sshhost
+Target Address                            		value example  "192.168.178.100"
+$sshuser
+User Name                                 		value example  "root"
+$scriptspeed
+Timeout in Seconds until session restart  		value example  "10"
+$infospeed
+Timeout in Seconds until session start    		value example  "1.5"
+
+
+wt-session_telnet_static_template.ps1
+
+$telnetport
+Telnet Port                               		value example  "22"
+$telnethost
+Target Address                            		value example  "192.168.178.100"
+$scriptspeed
+Timeout in Seconds until session restart  		value example  "10"
+$infospeed
+Timeout in Seconds until session start    		value example  "1.5"
+
+
+
 # Color Settings
 You could add / remove color themes at line 90.
 Shell: PowerShell  Color Theme: "Banana Blueberry"
@@ -111,8 +170,3 @@ Shell: Serial      Color Theme: "MonaLisa"
 
 You could find more awsome color themes at https://windowsterminalthemes.dev/
 So feel free to make it your terminal :D
-
-
-
-# Script Settings
-
