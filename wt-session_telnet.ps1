@@ -19,14 +19,15 @@ $stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session-Neus
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einbleungen
+# Einbleungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 
     ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\" -Name ReleaseID).ReleaseId), " ]   ", (Get-Date -Format "dd/MM/yyyy HH:mm"), "`n") 
     $stringhost = $stringhost.replace("{Caption=Microsoft"," ").replace("}", " ")
 
-    if (!$fmode) {
+    if (!$fmode)                                                                                # Wenn Variable Null dann Screen leeren
+    {
         Clear-Host
     }
 

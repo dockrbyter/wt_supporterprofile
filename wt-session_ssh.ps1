@@ -19,15 +19,15 @@ $stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session-Neustar
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einbleungen
+# Einbleungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 
     ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\" -Name ReleaseID).ReleaseId), " ]   ", (Get-Date -Format "dd/MM/yyyy HH:mm"), "`n") 
     $stringhost = $stringhost.replace("{Caption=Microsoft"," ").replace("}", " ")
 
-    # Setzt Clear-Host-Anweisung aus, wenn $fmode nicht null
-    if (!$fmode) {
+    if (!$fmode)                                                                                # Wenn Variable Null dann Screen leeren
+    {
         Clear-Host
     }
 

@@ -21,7 +21,7 @@ $stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session-Neus
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einblendungen
+# Einblendungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 

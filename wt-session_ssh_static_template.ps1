@@ -1,10 +1,10 @@
 <#
-wt-session_ssh_static_template.ps1
+wt-session_ssh.ps1
 .DESCRIPTION
 
     SSH-Connection Script template
     
-https://github.com/thelamescriptkiddiemax/wt_supporterprofile
+https://github.com/thelamescriptkiddiemax/powershell
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ $stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session-Neustar
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einblendungen
+# Einblendungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 

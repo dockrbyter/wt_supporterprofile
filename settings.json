@@ -1,0 +1,196 @@
+// Max's Terminal Profile
+// https://github.com/thelamescriptkiddiemax/stuff
+//
+//
+// Programmeinstellungen
+//      defaultProfile  =   {61c54bbd-c2c6-5271-96e7-009a87ff44bf} - PowerShell
+//                          {0caa0dad-35be-5f56-a8ff-afceeeaa6101} - CMD
+//      copyOnSelect    =   Markierte Elemente direkt ins Clipboard uebertragen
+//      copyFormatting  =   Behaelt Formatierung bei Kopieren bei
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "copyOnSelect": true,
+    "copyFormatting": false,
+
+    // Shell-Profile
+    "profiles":
+    {
+        "defaults":
+        {
+            // Profiluebergreifende Einstellungen
+            "scrollbarState": "visible",
+            "snapOnInput": true,
+            "closeOnExit": "graceful",
+            "antialiasingMode": "cleartype",
+            "useAcrylic": true,
+            "backgroundImageOpacity": 0.3,
+            "acrylicOpacity": 0.7
+        },
+        "list":
+        [
+            {
+                // PowerShell
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "PowerShell",
+                "commandline": "powershell.exe",
+                "hidden": false,
+                "colorScheme": "Banana Blueberry",
+                "icon": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\icons\\Icon_Powershell.ico",
+                "backgroundImage": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\wallpaper\\furthermadness.jpg"
+            },
+            {
+                // SSH Session
+                "name": "SSH Verbindung",
+                "tabTitle": "SSH",
+                "hidden": false,
+                "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\WT_Scripts\\wt-session_ssh.ps1\"",
+                "icon": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\icons\\Icon_SSH.ico",
+                "backgroundImage": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\wallpaper\\madness.jpg",
+                "colorScheme": "Blue Matrix"
+            },
+            {
+                // Telnet Session
+                "hidden": false,
+                "name": "Telnet Verbindung",
+                "tabTitle": "Telnet",
+                "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\WT_Scripts\\wt-session_telnet.ps1\"",
+                "icon": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\icons\\Icon_Telnet.ico",
+                "backgroundImage": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\wallpaper\\morethanthreeofthis.jpg",
+                "colorScheme": "Ollie"
+            },
+            {
+                // Serial Session
+                "hidden": false,
+                "name": "Serial Verbindung",
+                "tabTitle": "Serial",
+                "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\WT_Scripts\\wt-session_serial.ps1\"",
+                "icon": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\icons\\Icon_Serial.ico",
+                "backgroundImage": "C:\\Users\\Public\\Pictures\\SupporterTerminal\\wallpaper\\nebula.jpg",
+                "colorScheme": "MonaLisa"
+            },
+            {
+                // Azure Cloud Shell
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": true,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure",
+                "colorScheme": "Solarized Dark"
+            },
+            {
+                // CMD
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "Eingabeaufforderung",
+                "commandline": "cmd.exe",
+                "hidden": true
+            }
+        ]
+    },
+
+    // Farbschemata
+    "schemes": [
+        {
+            "name": "Ollie",
+            "black": "#000000",
+            "red": "#ac2e31",
+            "green": "#31ac61",
+            "yellow": "#ac4300",
+            "blue": "#2d57ac",
+            "purple": "#b08528",
+            "cyan": "#1fa6ac",
+            "white": "#8a8eac",
+            "brightBlack": "#5b3725",
+            "brightRed": "#ff3d48",
+            "brightGreen": "#3bff99",
+            "brightYellow": "#ff5e1e",
+            "brightBlue": "#4488ff",
+            "brightPurple": "#ffc21d",
+            "brightCyan": "#1ffaff",
+            "brightWhite": "#5b6ea7",
+            "background": "#222125",
+            "foreground": "#8a8dae"
+          },
+        {
+            "name": "MonaLisa",
+            "black": "#351b0e",
+            "red": "#9b291c",
+            "green": "#636232",
+            "yellow": "#c36e28",
+            "blue": "#515c5d",
+            "purple": "#9b1d29",
+            "cyan": "#588056",
+            "white": "#f7d75c",
+            "brightBlack": "#874228",
+            "brightRed": "#ff4331",
+            "brightGreen": "#b4b264",
+            "brightYellow": "#ff9566",
+            "brightBlue": "#9eb2b4",
+            "brightPurple": "#ff5b6a",
+            "brightCyan": "#8acd8f",
+            "brightWhite": "#ffe598",
+            "background": "#120b0d",
+            "foreground": "#f7d66a"
+          },
+          {
+            "name": "Banana Blueberry",
+            "black": "#17141f",
+            "red": "#ff6b7f",
+            "green": "#00bd9c",
+            "yellow": "#e6c62f",
+            "blue": "#22e8df",
+            "purple": "#dc396a",
+            "cyan": "#56b6c2",
+            "white": "#f1f1f1",
+            "brightBlack": "#495162",
+            "brightRed": "#fe9ea1",
+            "brightGreen": "#98c379",
+            "brightYellow": "#f9e46b",
+            "brightBlue": "#91fff4",
+            "brightPurple": "#da70d6",
+            "brightCyan": "#bcf3ff",
+            "brightWhite": "#ffffff",
+            "background": "#191323",
+            "foreground": "#cccccc"
+          },
+          {
+            "name": "Blue Matrix",
+            "black": "#101116",
+            "red": "#ff5680",
+            "green": "#00ff9c",
+            "yellow": "#fffc58",
+            "blue": "#00b0ff",
+            "purple": "#d57bff",
+            "cyan": "#76c1ff",
+            "white": "#c7c7c7",
+            "brightBlack": "#686868",
+            "brightRed": "#ff6e67",
+            "brightGreen": "#5ffa68",
+            "brightYellow": "#fffc67",
+            "brightBlue": "#6871ff",
+            "brightPurple": "#d682ec",
+            "brightCyan": "#60fdff",
+            "brightWhite": "#ffffff",
+            "background": "#101116",
+            "foreground": "#00a2ff"
+          }
+    ],
+
+    // Keybindings
+    "keybindings":
+    [
+        // Copy / Paste - Strg+C / Strg+V
+        { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+        { "command": "paste", "keys": "ctrl+v" },
+
+        // Suchen - Strg+Shift+F
+        { "command": "find", "keys": "ctrl+shift+f" },
+
+        // Neues Pane - Alt+Shift+D
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
+
+        // Full Screen Mode
+        { "command": "toggleFullscreen", "keys": "alt+enter" },
+        { "command": "toggleFullscreen", "keys": "f11" }
+    ]
+}

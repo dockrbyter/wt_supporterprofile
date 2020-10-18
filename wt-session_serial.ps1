@@ -8,23 +8,24 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$defaultbaud = "9600"           # Default Baud Rate                 EX  9600
-$fmode = ""                     # Floating Mode (fuer Debugging)    EX  x
-$scriptspeed = "2"              # Dauer der Einbledungen            EX  1
+[INT]$defaultbaud = "9600"          # Default Baud Rate                 EX  9600
+$fmode = ""                         # Floating Mode (fuer Debugging)    EX  x
+$scriptspeed = "5"                  # Dauer der Einbledungen            EX  1
 
 
 $serialport = [System.IO.Ports.SerialPort]::getportnames()
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einblendungen
+# Einblendungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 
     ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\" -Name ReleaseID).ReleaseId), " ]   ", (Get-Date -Format "dd/MM/yyyy HH:mm"), "`n") 
     $stringhost = $stringhost.replace("{Caption=Microsoft"," ").replace("}", " ")
 
-    if (!$fmode) {
+    if (!$fmode)                                                                                # Wenn Variable Null dann Screen leeren
+    {
         Clear-Host
     }
 
@@ -44,50 +45,76 @@ function scripthead {
 }
 
 # Serial Session
-function sessionserial ($comport, $baudspeed) {
+function sessionserial ($port) {
     
-    Clear-Host
+    $port.Open()                                                                                # Serial Port oeffnen
+    $port.ReadExisting()                                                                        # Serial Port auslesen
+    $inputcharraw = Read-Host "Eingabe"                                                         # Eingabe von User engegen nehmen
     
-    $port= new-Object System.IO.Ports.SerialPort $serialport,$baudspeed,None,8,one
-    $port.Open()
-    do {
-        $textline = $port.ReadLine()
-        Write-Host $textline
+    if ([string]::IsNullOrWhiteSpace($inputchar))                                               # Wenn Eingabe null dann ENTER
+    {
+        $inputchar = {ENTER}
+    }else                                                                                       # Else Eingabe in Char umwandeln
+    {
+        $inputchar = ([byte][char]$inputcharraw)
     }
-    while ($port.IsOpen)
+
+    $port.Write( $inputchar )                                                                   # Serial Port Eingabe uebermitteln
+    $port.ReadExisting()                                                                        # Serial Port auslesen
+    $port.Close()                                                                               # Serial Port schliessen
+
 }
 
 #--- Verarbeitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-if (!$serialport) {
+if (!$serialport)                                                                                                                                   # Serial Port nicht verbunden dann Session schliessen
+{
     
-    scripthead
+    scripthead                                                                                                                                      # Scripthead ausgeben
     Write-Host "       KEINE COM-VERBINDUNG GEFUNDEN! `n       Verbindung pruefen! `n" -ForegroundColor White
     Write-Host "    Bitte schliessen Sie diesen Tab und oeffnen ihn nach Wiederherstellung der Verbindung erneut." -ForegroundColor White
 
-    Start-Sleep -Seconds 30
-    Exit
+    Start-Sleep -Seconds 30                                                                                                                         # Warte 30 Sekunden
+    Exit                                                                                                                                            # Schliesse Session
 }
 
-$stringziel = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport, "`n")
+$stringziel = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport, "`n")                                                                  # Ausgabe vorhandene Com Verbindung zusammenbauen
 
-scripthead
-Write-Host $stringziel
+scripthead                                                                                                                                          # Scripthead ausgeben
+Write-Host $stringziel                                                                                                                              # Ausgabe vorhandene Com Verbindung
 Write-Host "   Baudrates (bits per second):"
-Write-Host "   110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000"
-$baudspeed = Read-Host "Baudrate? -ENTER fuer Default [$defaultbaud]"
-# Wenn Baud-Eingabe null dann $defaultbaud
-if ([string]::IsNullOrWhiteSpace($baudspeed))
+Write-Host "   110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000"                                           # Moegliche Baud Rates
+[INT]$baudspeed = Read-Host "Baudrate? -ENTER fuer Default [$defaultbaud]"                                                                          # Baud Rate eingeben
+
+if ([string]::IsNullOrWhiteSpace($baudspeed))                                                                                                       # Wenn Baud-Eingabe null dann $defaultbaud
 {
     $baudspeed = $defaultbaud
 }
 
-$stringbaud = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport,"`n  Baudrate: ", $baudspeed, "`n`n  Baue Verbindung auf...`n")
+$stringbaud = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport,"`n  Baudrate: ", $baudspeed, "`n`n  Baue Verbindung auf...`n")         # Ausgabe vorhandene Com Verbindung mit Baud Rate zusammenbauen
 
-scripthead
-Write-Host $stringbaud
-Start-Sleep -Seconds $scriptspeed
+scripthead                                                                                                                                          # Scripthead ausgeben
+Write-Host $stringbaud                                                                                                                              # Ausgabe vorhandene Com Verbindung mit Baud Rate
+Start-Sleep -Seconds $scriptspeed                                                                                                                   # Warte Dauer $scriptspeed
 
-sessionserial
+
+$port = new-Object System.IO.Ports.SerialPort                                               # Serial Object erzeugen
+$port.PortName = $serialport                                                                # COM Port festlegen
+$port.BaudRate = $baudspeed                                                                 # Baud Rate 
+$port.Parity = "None"                                                                       # Parity None
+$port.DataBits = 8                                                                          # Start Bit Laenge
+$port.StopBits = 1                                                                          # Stop Bit Laenge
+$port.ReadTimeout = 1000                                                                    # Timeout eine Sekunde
+
+
+Clear-Host                                                                                                                                          # Screen leeren
+
+while($true)                                                                                                                                        # Endlosschleife
+{
+
+    sessionserial $port                                                                                                                             # Serial Daten Ein/Ausgabe
+    Start-Sleep -Seconds 1                                                                                                                          # Warte eine Sekunde
+
+}
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
