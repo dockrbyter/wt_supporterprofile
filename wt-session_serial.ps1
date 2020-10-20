@@ -116,7 +116,6 @@ $port.Open()                                                                    
 while($true)                                                                                                                                        # Endlosschleife
 {
 
-    
     sessionserial $port                                                                                                                             # Serial Daten Ein/Ausgabe
     Start-Sleep -Seconds 1                                                                                                                          # Warte eine Sekunde
 }
