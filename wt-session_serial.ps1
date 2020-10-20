@@ -8,7 +8,7 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[INT]$defaultbaud = "9600"          # Default Baud Rate                 EX  9600
+$defaultbaud = "9600"               # Default Baud Rate                 EX  9600
 $fmode = ""                         # Floating Mode (fuer Debugging)    EX  x
 $scriptspeed = "5"                  # Dauer der Einbledungen            EX  1
 
@@ -47,21 +47,22 @@ function scripthead {
 # Serial Session
 function sessionserial ($port) {
     
-    $port.Open()                                                                                # Serial Port oeffnen
-    $port.ReadExisting()                                                                        # Serial Port auslesen
-    $inputcharraw = Read-Host "Eingabe"                                                         # Eingabe von User engegen nehmen
     
-    if ([string]::IsNullOrWhiteSpace($inputchar))                                               # Wenn Eingabe null dann ENTER
-    {
-        $inputchar = {ENTER}
-    }else                                                                                       # Else Eingabe in Char umwandeln
-    {
-        $inputchar = ([byte][char]$inputcharraw)
-    }
-
-    $port.Write( $inputchar )                                                                   # Serial Port Eingabe uebermitteln
+    Start-Sleep -Milliseconds 500
     $port.ReadExisting()                                                                        # Serial Port auslesen
-    $port.Close()                                                                               # Serial Port schliessen
+    $inputcharraw = Read-Host " #"                                                         # Eingabe von User entgegen nehmen
+    
+    if (!($inputcharraw))                                                                       # Wenn Eingabe null dann ENTER
+    {
+        $inputchar = "`r"
+    }
+    else                                                                                       # Else Eingabe in Char umwandeln
+    {
+        $inputchar = [System.String]::Concat($inputcharraw, "`r")
+    }
+    
+    $port.Write( $inputchar )                                                                   # Serial Port Eingabe uebermitteln
+    
 
 }
 
@@ -84,9 +85,10 @@ scripthead                                                                      
 Write-Host $stringziel                                                                                                                              # Ausgabe vorhandene Com Verbindung
 Write-Host "   Baudrates (bits per second):"
 Write-Host "   110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000"                                           # Moegliche Baud Rates
-[INT]$baudspeed = Read-Host "Baudrate? -ENTER fuer Default [$defaultbaud]"                                                                          # Baud Rate eingeben
 
-if ([string]::IsNullOrWhiteSpace($baudspeed))                                                                                                       # Wenn Baud-Eingabe null dann $defaultbaud
+$baudspeed = Read-Host "Baudrate? -ENTER fuer Default [$defaultbaud]"                                                                          # Baud Rate eingeben
+
+if (!($baudspeed))                                                                                                       # Wenn Baud-Eingabe null dann $defaultbaud
 {
     $baudspeed = $defaultbaud
 }
@@ -109,12 +111,16 @@ $port.ReadTimeout = 1000                                                        
 
 Clear-Host                                                                                                                                          # Screen leeren
 
+$port.Open()                                                                                # Serial Port oeffnen
+
 while($true)                                                                                                                                        # Endlosschleife
 {
 
+    
     sessionserial $port                                                                                                                             # Serial Daten Ein/Ausgabe
     Start-Sleep -Seconds 1                                                                                                                          # Warte eine Sekunde
-
 }
+
+$port.Close()                                                                               # Serial Port schliessen
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
