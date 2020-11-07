@@ -25,7 +25,7 @@ $puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-i
 
 
 $scriptspeed = "3"                                                                              # Dauer der Einbledungen            EX  1
-$fmode = ""                                                                                     # Floating Mode (Debugging)         EX  x
+$fmode = "x"                                                                                     # Floating Mode (Debugging)         EX  x
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,9 +35,12 @@ $installcheck = (Get-AppxPackage -Name $wintermi | Select-Object PackageFullName
 $scriptsource = "$PSScriptRoot\scripts\*"                                                                                                           # Copy source scripts
 $profilesource = "$PSScriptRoot\settings.json"                                                                                                      # Copy source settings.json
 
+$wtsppathname = "WT_SP"                                                                                                                             # Directory working
 $wtsppath = "%public%\WT_SP"                                                                                                                        # Directory working
+$scppathname = "scripts"                                                                                                                            # Directory scripts
 $wtspscripts = "$wtsppath\scrips"                                                                                                                   # Directory scripts
 $scriptdest = "$wtspscripts\"                                                                                                                       # Directory scripts
+$mkupathname = "makeup"                                                                                                                             # Directory makeup
 $wtspmakeup = "$wtsppath\makeup"                                                                                                                    # Directory makeup
 $makeupzip = "$wtspmakeup\makeup.zip"                                                                                                               # makeup.zip - wallpapers and icons
 $profbdest = "$wtsppath\settings_BACKUP.json"                                                                                                       # setting.json backup
@@ -146,14 +149,16 @@ scripthead                                                                      
 Write-Host "   Looking for working directory..."                                                                                                    # text output
 scriptspeed $scriptspeed                                                                                                                            # display timeout
 
-if(!(Test-Path $wtscriptpath))                                                                                                                      # If working directory is not present create it
+if(!(Test-Path $wtsppath))                                                                                                                          # If working directory is not present create it
 {
     
     scripthead                                                                                                                                      # Scripthead
     Write-Host "   ...not found. Creating..."                                                                                                       # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
     
-    New-Item -Path %public% -Name $rootgamesrvPATH -ItemType "directory"                                                                            # create directory
+    New-Item -Path %public% -Name $wtsppathname -ItemType "directory"                                                                               # create working directory
+    New-Item -Path $wtsppath -Name $scppathname -ItemType "directory"                                                                               # create scripts directory
+    New-Item -Path %public% -Name $mkupathname -ItemType "directory"                                                                                # create makeup directory
     
     scripthead                                                                                                                                      # Scripthead
     Write-Host "   ...done!"                                                                                                                        # text output
