@@ -1,8 +1,16 @@
 # wt_supporterprofile
-Windows Terminal profile for IT supporter. Including SSH, Telnet and Serial sessions.
-For detailed informations about Windows Terminal visit https://docs.microsoft.com/en-us/windows/terminal/
+Windows Terminal profile for IT supporter.
+Including SSH, Telnet and PuTTY bypass for Serial sessions.
 
-All connections are handled by calling PowerShell scripts. Every script has own settings you could edit.
+For detailed informations about 
+Windows Terminal visit https://docs.microsoft.com/en-us/windows/terminal/
+
+For detailed informations about 
+PuTTY visit https://www.putty.org/
+
+
+All connections are handled by calling PowerShell scripts. 
+Every script has own settings you could edit.
 For more information scroll down to "Script Settings".
 
 
