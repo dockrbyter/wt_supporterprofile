@@ -34,19 +34,19 @@ Finaly it will download and install PuTTY.
 You could disable this by removing the value in line 23 in the setup script.
 See also the other settings in the lines 21 till 28.
 
-$makeupdl
+$makeupdl -
 The download link for the makeup
 
-$puttysetup
+$puttysetup -
 Disabled the PuTTY setup by leaving blank
 
-$puttylink
+$puttylink -
 The download link for the PuTTY - Visit their website https://www.putty.org/ for new versions link
 
-$scriptspeed
+$scriptspeed -
 Timeout in Seconds until session restart - value example  "10"
 
-$fmode
+$fmode -
 Floating Mode - skips the Clear-Host command - value example  "x"
 
 
@@ -133,72 +133,72 @@ Finaly edit the variables (lines 10 to 18) in your session script and you good t
 
 # Script Settings
 
-wt-session_ssh.ps1
+wt-session_ssh.ps1 --
 
-$defaultsshport
+$defaultsshport -
 SSH Default Port - value example  "22"
 
-$scriptspeed
+$scriptspeed -
 Timeout in Seconds until session restart - value example  "10"
 
-$fmode
+$fmode -
 Floating Mode - skips the Clear-Host command - value example  "x"
 
 
-wt-session_telnet.ps1
+wt-session_telnet.ps1 --
 
-$defaulttelnetport
+$defaulttelnetport -
 Telnet Default Port - value example  "23"
 
-$scriptspeed
+$scriptspeed -
 Timeout in Seconds until session restart - value example  "10"
 
-$fmode
+$fmode -
 Floating Mode - skips the Clear-Host command - value example  "x"
 
 
-wt-session_serial.ps1
+wt-session_serial.ps1 --
 
-$defaultbaud
+$defaultbaud -
 Default Baud Rate                 				value example  "9600"
 
-$fmode
+$fmode -
 Floating Mode - skips the Clear-Host command  	value example  "x"
 
-$scriptspeed
+$scriptspeed -
 Timeout for the overlays            			value example  "1"
 
 
-wt-session_ssh_static_template.ps1
+wt-session_ssh_static_template.ps1 --
 
-$sshport
+$sshport -
 SSH Port - value example  "22"
 
-$sshhost
+$sshhost -
 Target Address - value example  "192.168.178.100"
 
-$sshuser
+$sshuser -
 User Name - value example  "root"
 
-$scriptspeed
+$scriptspeed -
 Timeout in Seconds until session restart - value example  "10"
 
-$infospeed
+$infospeed -
 Timeout in Seconds until session start - value example  "1.5"
 
 
-wt-session_telnet_static_template.ps1
+wt-session_telnet_static_template.ps1 --
 
-$telnetport
+$telnetport -
 Telnet Port - value example  "22"
 
-$telnethost
+$telnethost -
 Target Address - value example  "192.168.178.100"
 
-$scriptspeed
+$scriptspeed -
 Timeout in Seconds until session restart - value example  "10"
 
-$infospeed
+$infospeed -
 Timeout in Seconds until session start - value example  "1.5"
 
 
