@@ -36,10 +36,10 @@ Download the repository an run setup.ps1.
 
 It's a setup script which install things, so yeah, you have to run it as an administrator ;)
 
-The script will install Windows Terminal, if it's not allready on your System.
-After that it will create the directorie "WT_SP" at "C:\Users\Public\".
-There goes the scripts and the makeup (wallpaer, icons) download.
-Finaly it will download and install PuTTY.
+The script will install Windows Terminal, if it's not already on your System.
+After that it will create the directory "WT_SP" at "C:\Users\Public\".
+Here the scripts are stored and makeup (wallpaer, icons) downloaded.
+Finally it will download and install PuTTY.
 You could disable this by removing the value in line 23 in the setup script.
 See also the other settings in the lines 21 till 28.
 
