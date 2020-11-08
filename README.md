@@ -32,6 +32,7 @@ Serial session:
 
 # Setup
 Download the repository an run setup.ps1.
+(This Script is under construction - you have to download install the stuff manually)
 
 It's a setup script which install things, so yeah, you have to run it as an administrator ;)
 
