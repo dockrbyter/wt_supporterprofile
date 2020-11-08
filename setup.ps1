@@ -26,7 +26,7 @@ $puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-i
 
 
 $scriptspeed = "3"                                                                              # Dauer der Einbledungen            EX  1
-$fmode = "x"                                                                                     # Floating Mode (Debugging)         EX  x
+$fmode = ""                                                                                     # Floating Mode (Debugging)         EX  x
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
