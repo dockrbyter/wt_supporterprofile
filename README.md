@@ -5,7 +5,6 @@ For detailed informations about Windows Terminal visit https://docs.microsoft.co
 All connections are handled by calling PowerShell scripts. Every script has own settings you could edit.
 For more information scroll down to "Script Settings".
 
-    !!!! The Serial session is still unter construction !!!!
 
 SSH session:
  - Asks you for target address and user credentials
@@ -19,6 +18,32 @@ Telnet session:
 Serial session:
  - Automatically detects active COM-Port
  - Asks you for baud rate, takes 9600 by default
+ - bypasses the values to PuTTY
+
+
+
+# Setup
+Download the repository an run setup.ps1.
+
+It's a setup script which install things, so yeah, you have to run it as an administrator ;)
+
+The script will install Windows Terminal, if it's not allready on your System.
+After that it will create the directorie "WT_SP" at "C:\Users\Public\".
+There goes the scripts and the makeup (wallpaer, icons) download.
+Finaly it will download and install PuTTY.
+You could disable this by removing the value in line 23 in the setup script.
+See also the other settings in the lines 21 till 28.
+
+$makeupdl
+The download link for the makeup;
+$puttysetup
+Disabled the PuTTY setup by leaving blank;
+$puttylink
+The download link for the PuTTY - Visit their website https://www.putty.org/ for new versions link;
+$scriptspeed
+Timeout in Seconds until session restart - value example  "10";
+$fmode
+Floating Mode - skips the Clear-Host command - value example  "x";
 
 
 
@@ -163,10 +188,14 @@ Timeout in Seconds until session start - value example  "1.5";
 
 # Color Settings
 You could add / remove color themes at line 90.
-Shell: PowerShell  Color Theme: "Banana Blueberry"
+Shell: PowerShell  Color Theme: "AdventureTime"
 Shell: SSH         Color Theme: "Blue Matrix"
-Shell: Telnet      Color Theme: "Ollie"
+Shell: Telnet      Color Theme: "coffee_theme"
 Shell: Serial      Color Theme: "MonaLisa"
 
 You could find more awsome color themes at https://windowsterminalthemes.dev/
 So feel free to make it your terminal :D
+
+Visit https://imgur.com/a/u1Nn2xy to see the default wallpapers.
+Yeah, they look scuffed and used :D
+But I'm a technican, not a graphic artist, so feel tree to change them ;)
