@@ -59,27 +59,6 @@ Floating Mode - skips the Clear-Host command - value example  "x"
 
 
 
-# Shell Settings
-PowerShell: Default Shell
-CMD: Hidden by default - You could enable it by setting line 83 to "false"
-Azure Shell: Hidden by default - You could enable it by setting line 75 to "false"
-WSL: Profile will be genreated automatically if WSL-Distribution is installed on your system
-
-
-
-# Global Profile Settings
-You could edit the global settings from Line 12 until line 29.
-If you want to set the default shell for example to CMD, so change line 13 to {0caa0dad-35be-5f56-a8ff-afceeeaa6101}
-For more information visit https://docs.microsoft.com/en-us/windows/terminal/customize-settings/global-settings
-and https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings
-
-
-
-# Key Bindings
-Edit the key bindings, like split pane at line 178
-
-
-
 # Add Static Connection Profiles
 You have two options to make static connection profiles. In booth options you have to add a new profile to the list starting at Line 31.
 
@@ -208,6 +187,29 @@ Timeout in Seconds until session restart - value example  "10"
 
 $infospeed -
 Timeout in Seconds until session start - value example  "1.5"
+
+
+
+# Shell Settings
+PowerShell: Default Shell
+CMD: Hidden by default - You could enable it by setting line 83 to "false"
+Azure Shell: Hidden by default - You could enable it by setting line 75 to "false"
+WSL: Profile will be genreated automatically if WSL-Distribution is installed on your system
+
+
+
+# Global Profile Settings
+You could edit the global settings from Line 12 until line 29.
+If you want to set the default shell for example to CMD, so change line 13 to {0caa0dad-35be-5f56-a8ff-afceeeaa6101}
+For more information visit https://docs.microsoft.com/en-us/windows/terminal/customize-settings/global-settings
+and https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings
+
+
+
+# Key Bindings
+Edit the key bindings, like split pane at line 178
+For detailed informations visit
+https://docs.microsoft.com/en-us/windows/terminal/customize-settings/actions
 
 
 
