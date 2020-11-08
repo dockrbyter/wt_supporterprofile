@@ -36,7 +36,7 @@ $scriptsource = "$PSScriptRoot\scripts\*"                                       
 $profilesource = "$PSScriptRoot\settings.json"                                                                                                      # Copy source settings.json
 
 $wtsppathname = "WT_SP"                                                                                                                             # Directory working
-$wtsppath = "%public%\WT_SP"                                                                                                                        # Directory working
+$wtsppath = "$ENV:Public\WT_SP"                                                                                                                        # Directory working
 $scppathname = "scripts"                                                                                                                            # Directory scripts
 $wtspscripts = "$wtsppath\scrips"                                                                                                                   # Directory scripts
 $scriptdest = "$wtspscripts\"                                                                                                                       # Directory scripts
@@ -156,9 +156,9 @@ if(!(Test-Path $wtsppath))                                                      
     Write-Host "   ...not found. Creating..."                                                                                                       # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
     
-    New-Item -Path %public% -Name $wtsppathname -ItemType "directory"                                                                               # create working directory
+    New-Item -Path $ENV:Public -Name $wtsppathname -ItemType "directory"                                                                               # create working directory
     New-Item -Path $wtsppath -Name $scppathname -ItemType "directory"                                                                               # create scripts directory
-    New-Item -Path %public% -Name $mkupathname -ItemType "directory"                                                                                # create makeup directory
+    New-Item -Path $ENV:Public -Name $mkupathname -ItemType "directory"                                                                                # create makeup directory
     
     scripthead                                                                                                                                      # Scripthead
     Write-Host "   ...done!"                                                                                                                        # text output
@@ -239,4 +239,4 @@ Start-Process wt                                                                
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-stop-process -Id $PID                                                                                                                               # Kill Script Process
+#stop-process -Id $PID                                                                                                                               # Kill Script Process
