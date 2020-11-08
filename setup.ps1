@@ -18,7 +18,8 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$makeupdl = "https://gofile.io/d/jFcJ5e"                                                        # Link to makup zip-file            EX  https://domain.tld/share/file.zip
+$makeupdl = "https://srv-store4.gofile.io/download/jFcJ5e/makeup.zip"                                                        # Link to makup zip-file            EX  https://domain.tld/share/file.zip
+$storelinkwt = "https://www.microsoft.com/de-de/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab"        # The Link to Windows Terminal in MS Store      EX  https://www.microsoft.com/de-de/p/windows-terminal/
 
 $puttysetup = "x"                                                                               # Enables the PuTTY setup           EX  x
 $puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi"   # Link to PuTTY.MSI                 EX  https://domain.tld/share/file.msi
@@ -32,11 +33,13 @@ $fmode = "x"                                                                    
 $wintermi = "*windowsterminal*"                                                                                                                     # Windows Terminal install check
 $installcheck = (Get-AppxPackage -Name $wintermi | Select-Object PackageFullName)                                                                   # Windows Terminal install check
 
-$scriptsource = "$PSScriptRoot\scripts\*"                                                                                                           # Copy source scripts
-$profilesource = "$PSScriptRoot\settings.json"                                                                                                      # Copy source settings.json
+$reposource = $PSScriptRoot
+
+$scriptsource = "$reposource\scripts\"                                                                                                           # Copy source scripts
+$profilesource = "$reposource\settings.json"                                                                                                      # Copy source settings.json
 
 $wtsppathname = "WT_SP"                                                                                                                             # Directory working
-$wtsppath = "$ENV:Public\WT_SP"                                                                                                                        # Directory working
+$wtsppath = "$ENV:Public\WT_SP"                                                                                                                     # Directory working
 $scppathname = "scripts"                                                                                                                            # Directory scripts
 $wtspscripts = "$wtsppath\scrips"                                                                                                                   # Directory scripts
 $scriptdest = "$wtspscripts\"                                                                                                                       # Directory scripts
@@ -46,7 +49,7 @@ $makeupzip = "$wtspmakeup\makeup.zip"                                           
 $profbdest = "$wtsppath\settings_BACKUP.json"                                                                                                       # setting.json backup
 $puttymsi = "$wtsppath\putty.msi"                                                                                                                   # PuTTX.MSI
 
-$profilepath = "%HOMEPATH%\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"                                               # Windows Terminal profile path
+$profilepath = "$ENV:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"                                                      # Windows Terminal profile path
 
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -98,7 +101,8 @@ function fileloader ($dlfile, $dllink, $scriptspeed)
     }
     
     $fileloader = New-Object System.Net.WebClient                                                                                                   # Create downloader object
-    $stringldloutput = [System.String]::Concat("Link: ", $trafficlink, "`n", "Link: ", $trafficlink)                                                # Create stringldloutput
+  
+    $stringldloutput = [System.String]::Concat("Link: ", $dllink, "`n", "Path: ", $dlfile, "`n")                                                    # Create stringldloutput
   
     scripthead                                                                                                                                      # Scripthead
     Write-Host $stringldloutput                                                                                                                     # text output stringldloutput
@@ -111,7 +115,7 @@ function fileloader ($dlfile, $dllink, $scriptspeed)
 # Zip Extractor
 function zipout ($zipoutfile, $zipoutpath)
 {
-    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath                                                                            # Extract Zip-File
+    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath -Force                                                                     # Extract Zip-File
     Remove-Item $zipoutfile                                                                                                                         # Remove Zip-File
 }
 
@@ -134,13 +138,18 @@ if (!$installcheck)
 {
 
     scripthead                                                                                                                                      # Scripthead
-    Write-Host "   Can't find Windows Terminal Installation! `n   Install..."                                                                       # text output
+    Write-Host "   Can't find Windows Terminal Installation! `n   Here's the link! `n   Please finish WT-Setup before hitting Enter"                # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
     
-    Add-AppxPackage -register "C:\Program Files\WindowsApps\$wintermi\AppxManifest.xml" -DisableDevelopmentMode                                     # Install Windows Terminal
+    Start-Process $storelinkwt                                                                                                                      # Open browser to install Windows Terminal
 
     scripthead                                                                                                                                      # Scripthead
-    Write-Host "   ...done!"                                                                                                                        # text output
+    Pause                                                                                                                                           # Wait for Windows Terminal setup
+
+}else {
+    
+    scripthead                                                                                                                                      # Scripthead
+    Write-Host "   ...found!"                                                                                                                       # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
 
 }
@@ -156,9 +165,9 @@ if(!(Test-Path $wtsppath))                                                      
     Write-Host "   ...not found. Creating..."                                                                                                       # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
     
-    New-Item -Path $ENV:Public -Name $wtsppathname -ItemType "directory"                                                                               # create working directory
+    New-Item -Path $ENV:Public -Name $wtsppathname -ItemType "directory"                                                                            # create working directory
     New-Item -Path $wtsppath -Name $scppathname -ItemType "directory"                                                                               # create scripts directory
-    New-Item -Path $ENV:Public -Name $mkupathname -ItemType "directory"                                                                                # create makeup directory
+    New-Item -Path $wtsppath -Name $mkupathname -ItemType "directory"                                                                               # create makeup directory
     
     scripthead                                                                                                                                      # Scripthead
     Write-Host "   ...done!"                                                                                                                        # text output
@@ -178,7 +187,7 @@ scripthead                                                                      
 Write-Host "   Copy Scripts..."                                                                                                                     # text output
 scriptspeed $scriptspeed                                                                                                                            # display timeout
 
-Copy-Item -Path $scriptsource -Destination $scriptdest -Recurse                                                                                     # Copy scripts
+Copy-Item -Path $scriptsource -Destination $scriptdest -Recurse -Force                                                                              # Copy scripts
 
 scripthead                                                                                                                                          # Scripthead
 Write-Host "   Profile overwrite"                                                                                                                   # text output
