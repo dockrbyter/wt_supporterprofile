@@ -18,15 +18,15 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$makeupdl = "https://srv-store4.gofile.io/download/jFcJ5e/makeup.zip"                                                        # Link to makup zip-file            EX  https://domain.tld/share/file.zip
+$makeupdl = "https://srv-store4.gofile.io/download/jFcJ5e/makeup.zip"                                               # Link to makup zip-file                        EX  https://domain.tld/share/file.zip
 $storelinkwt = "https://www.microsoft.com/de-de/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab"        # The Link to Windows Terminal in MS Store      EX  https://www.microsoft.com/de-de/p/windows-terminal/
 
-$puttysetup = "x"                                                                               # Enables the PuTTY setup           EX  x
-$puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi"   # Link to PuTTY.MSI                 EX  https://domain.tld/share/file.msi
+$puttysetup = "x"                                                                                                   # Enables the PuTTY setup                       EX  x
+$puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi"                       # Link to PuTTY.MSI                             EX  https://domain.tld/share/file.msi
 
 
-$scriptspeed = "3"                                                                              # Dauer der Einbledungen            EX  1
-$fmode = ""                                                                                     # Floating Mode (Debugging)         EX  x
+$scriptspeed = "3"                                                                                                  # Dauer der Einbledungen                        EX  1
+$fmode = ""                                                                                                         # Floating Mode (Debugging)                     EX  x
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,13 +35,13 @@ $installcheck = (Get-AppxPackage -Name $wintermi | Select-Object PackageFullName
 
 $reposource = $PSScriptRoot
 
-$scriptsource = "$reposource\scripts\"                                                                                                           # Copy source scripts
-$profilesource = "$reposource\settings.json"                                                                                                      # Copy source settings.json
+$scriptsource = "$reposource\scripts\"                                                                                                              # Copy source scripts
+$profilesource = "$reposource\settings.json"                                                                                                        # Copy source settings.json
 
 $wtsppathname = "WT_SP"                                                                                                                             # Directory working
 $wtsppath = "$ENV:Public\WT_SP"                                                                                                                     # Directory working
 $scppathname = "scripts"                                                                                                                            # Directory scripts
-$wtspscripts = "$wtsppath\scripts"                                                                                                                   # Directory scripts
+$wtspscripts = "$wtsppath\scripts"                                                                                                                  # Directory scripts
 $scriptdest = "$wtspscripts\"                                                                                                                       # Directory scripts
 $mkupathname = "makeup"                                                                                                                             # Directory makeup
 $wtspmakeup = "$wtsppath\makeup"                                                                                                                    # Directory makeup
@@ -50,7 +50,6 @@ $profbdest = "$wtsppath\settings_BACKUP.json"                                   
 $puttymsi = "$wtsppath\putty.msi"                                                                                                                   # PuTTX.MSI
 
 $profilepath = "$ENV:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"                                                      # Windows Terminal profile path
-
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
