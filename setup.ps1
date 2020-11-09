@@ -18,10 +18,9 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$makeupdl = "https://srv-store4.gofile.io/download/jFcJ5e/makeup.zip"                                               # Link to makup zip-file                        EX  https://domain.tld/share/file.zip
 $storelinkwt = "https://www.microsoft.com/de-de/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab"        # The Link to Windows Terminal in MS Store      EX  https://www.microsoft.com/de-de/p/windows-terminal/
 
-$puttysetup = "x"                                                                                                   # Enables the PuTTY setup                       EX  x
+$puttysetup = ""                                                                                                    # Enables the PuTTY setup - Still broken !!!                       EX  x
 $puttylink = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi"                       # Link to PuTTY.MSI                             EX  https://domain.tld/share/file.msi
 
 
@@ -35,8 +34,9 @@ $installcheck = (Get-AppxPackage -Name $wintermi | Select-Object PackageFullName
 
 $reposource = $PSScriptRoot
 
-$scriptsource = "$reposource\scripts\*"                                                                                                              # Copy source scripts
+$scriptsource = "$reposource\scripts\*"                                                                                                             # Copy source scripts
 $profilesource = "$reposource\settings.json"                                                                                                        # Copy source settings.json
+$makeupzip = "$reposource\makeup.zip"                                                                                                               # makeup.zip - wallpapers and icons
 
 $wtsppathname = "WT_SP"                                                                                                                             # Directory working
 $wtsppath = "$ENV:Public\WT_SP"                                                                                                                     # Directory working
@@ -45,7 +45,6 @@ $wtspscripts = "$wtsppath\scripts"                                              
 $scriptdest = "$wtspscripts\"                                                                                                                       # Directory scripts
 $mkupathname = "makeup"                                                                                                                             # Directory makeup
 $wtspmakeup = "$wtsppath\makeup"                                                                                                                    # Directory makeup
-$makeupzip = "$wtspmakeup\makeup.zip"                                                                                                               # makeup.zip - wallpapers and icons
 $profbdest = "$wtsppath\settings_BACKUP.json"                                                                                                       # setting.json backup
 $puttymsi = "$wtsppath\putty.msi"                                                                                                                   # PuTTX.MSI
 
@@ -107,15 +106,15 @@ function fileloader ($dlfile, $dllink, $scriptspeed)
     Write-Host $stringldloutput                                                                                                                     # text output stringldloutput
     scriptspeed $scriptspeed                                                                                                                        # display timeout
 
-    $fileloader.DownloadFile($dllink, $dlfile)                                                                                                # Download file
+    $fileloader.DownloadFile($dllink, $dlfile)                                                                                                      # Download file
 
 }
 
 # Zip Extractor
 function zipout ($zipoutfile, $zipoutpath)
 {
-    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath -Force -Wait                                                               # Extract Zip-File
-    Remove-Item $zipoutfile                                                                                                                         # Remove Zip-File
+    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath -Force                                                                     # Extract Zip-File
+    
 }
 
 #--- Verarbeitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -196,13 +195,8 @@ Copy-Item -Path $profilesource -Destination $profilepath -Recurse               
 Copy-Item -Path $profilesource -Destination $profbdest -Recurse                                                                                     # create Settings.json backup
 
 scripthead                                                                                                                                          # Scripthead
-Write-Host "   ...done! `n   Downloading Makeup..."                                                                                                 # text output
+Write-Host "   ...done! `n   Extracting Makeup..."                                                                                                  # text output
 scriptspeed $scriptspeed                                                                                                                            # display timeout
-
-$dllink = $makeupdl                                                                                                                                 # Set download link
-$dlfile = $makeupzip                                                                                                                                # Set download file
-
-fileloader $dlfile $dllink $scriptspeed                                                                                                             # Call fileloader
 
 $zipoutfile =  $makeupzip                                                                                                                           # Set file to extract
 $zipoutpath = $wtspmakeup                                                                                                                           # Set extraction destination path
@@ -230,7 +224,8 @@ if ($puttysetup)
     Write-Host "   ...done! `n   Setup..."                                                                                                          # text output
     scriptspeed $scriptspeed                                                                                                                        # display timeout
 
-    MsiExec.exe /i $puttymsi /qn                                                                                                                    # Call PuTTY.MSI
+    Start-Process (MsiExec.exe /i $puttymsi /qn) -Wait                                                                                              # Call PuTTY.MSI
+    Remove-Item $puttymsi
 
     scripthead                                                                                                                                      # Scripthead
     Write-Host "   PuTTY installation complete!"                                                                                                    # text output
