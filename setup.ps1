@@ -35,7 +35,7 @@ $installcheck = (Get-AppxPackage -Name $wintermi | Select-Object PackageFullName
 
 $reposource = $PSScriptRoot
 
-$scriptsource = "$reposource\scripts\"                                                                                                              # Copy source scripts
+$scriptsource = "$reposource\scripts\*"                                                                                                              # Copy source scripts
 $profilesource = "$reposource\settings.json"                                                                                                        # Copy source settings.json
 
 $wtsppathname = "WT_SP"                                                                                                                             # Directory working
@@ -107,14 +107,14 @@ function fileloader ($dlfile, $dllink, $scriptspeed)
     Write-Host $stringldloutput                                                                                                                     # text output stringldloutput
     scriptspeed $scriptspeed                                                                                                                        # display timeout
 
-    $fileloader.DownloadFile($dllink, $dlfile)                                                                                                      # Download file
+    $fileloader.DownloadFile($dllink, $dlfile)                                                                                                # Download file
 
 }
 
 # Zip Extractor
 function zipout ($zipoutfile, $zipoutpath)
 {
-    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath -Force                                                                     # Extract Zip-File
+    Expand-Archive -LiteralPath $zipoutfile -DestinationPath $zipoutpath -Force -Wait                                                               # Extract Zip-File
     Remove-Item $zipoutfile                                                                                                                         # Remove Zip-File
 }
 
