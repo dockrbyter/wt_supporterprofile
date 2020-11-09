@@ -43,9 +43,6 @@ Finally it will download and install PuTTY.
 You could disable this by removing the value in line 23 in the setup script.
 See also the other settings in the lines 21 till 28.
 
-$makeupdl -
-The download link for the makeup
-
 $puttysetup -
 Disabled the PuTTY setup by leaving blank
 
