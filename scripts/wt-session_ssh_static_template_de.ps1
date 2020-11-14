@@ -2,34 +2,32 @@
 wt-session_ssh.ps1
 .DESCRIPTION
 
-    SSH-Connection Script
+    SSH-Connection Script template
     
-https://github.com/thelamescriptkiddiemax/wt_supporterprofile
+https://github.com/thelamescriptkiddiemax/powershell
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$defaultsshport = "22"      # SSH Default Port                          EX  22
-$scriptspeed = "8"          # Timeout session restart                   EX  10
-$fmode = ""                 # Floating Mode (Debugging)                 EX  x
+$sshport = "22"                     # SSH Port                                  EX  22
+$sshhost = "192.168.178.100"        # Target Address                            EX  192.168.178.100
+$sshuser = "root"                   # User Name                                 EX  root
+
+$scriptspeed = "8"                  # Timeout in Sekunden fuer Sessio Neustart  EX  10
+$infospeed = "1.5"                  # Timeout in Sekunden fuer Textausegabe     EX  1.5
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$stringziel = [System.String]::Concat("  Destination: ", $sshhost, "`n")                                                                                            # SSH Ziel-Einblendung zusammenbauen
-$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session restart in: ", $scriptspeed, " seconds.`n   Close Tab or wait for restart...")             # Session-Neustart-Einblendung zusammenbauen
+$stringziel = [System.String]::Concat("`n  Ziel: ", $sshhost, "`n   User: ", $sshuser, "`n   ...starte Session...")                                                     # SSH Ziel-Einblendung zusammenbauen
+$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session-Neustart in: ", $scriptspeed, " Sekunden.`n   Tab schliessen, oder auf Neustart warten...")    # Session-Neustart-Einblendung zusammenbauen
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einbleungen scripthead
+# Einblendungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 
     ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\" -Name ReleaseID).ReleaseId), " ]   ", (Get-Date -Format "dd/MM/yyyy HH:mm"), "`n") 
     $stringhost = $stringhost.replace("{Caption=Microsoft"," ").replace("}", " ")
-
-    if (!$fmode)                                                                                # Wenn Variable Null dann Screen leeren
-    {
-        Clear-Host
-    }
 
     Write-Host $stringhost -ForegroundColor Magenta
 
@@ -61,22 +59,8 @@ function sessionssh ($sshuser, $sshhost, $sshport, $scriptspeed, $stringreconnec
 #--- Verarbeitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 scripthead
-Write-Host "`n"
-$sshhost = (Read-Host 'Target Host?')                                                       # SSH Ziel eingeben
-
-scripthead
-Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
-$sshuser = (Read-Host 'User?')                                                              # SSH Benutzer eingeben
-
-scripthead
-Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
-$sshport = Read-Host "Alternative SSH-Port? -ENTER for Default [$defaultsshport]"           # SSH-Port eigeben - Default-Port: 22
-
-# Wenn Port-Eingabe null dann $defaultsshport
-if ([string]::IsNullOrWhiteSpace($sshport))
-{
-    $sshport = $defaultsshport
-}
+Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung
+Start-Sleep - $infospeed                                                                    # Timeout SSH Ziel-Einblendung
 
 # Schleife um Session neuzustarten
 while($true)

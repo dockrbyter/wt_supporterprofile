@@ -1,32 +1,35 @@
 <#
-wt-session_telnet_static_template.ps1
+wt-session_telnet.ps1
 .DESCRIPTION
 
-    Telnet-Connection Script template
+    Telnet-Connection Script
     
 https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$telnetport = "22"                      # Telnet Port                               EX  22
-$telnethost = "192.168.178.100"         # Target Address                            EX  192.168.178.100
-
-$scriptspeed = "8"                      # Timeout session restart                   EX  10
-$infospeed = "1.5"                      # Text timeout                              EX  1.5
+$defaulttelnetport = "23"           # Telnet Default Port                       EX  23
+$scriptspeed = "8"                  # Timeout in Sekunden fuer Textausegabe     EX  1.5
+$fmode = ""                         # Floating Mode (fuer Debugging)            EX  x
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$stringziel = [System.String]::Concat("`n  Destination: ", $telnethost, "`n   Port: ", $telnetport, "`n   ...starting session...")                                                      # Telnet Ziel-Einblendung zusammenbauen
-$stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session restart in: ", $scriptspeed, " Seconds.`n   Close Tab or wait for restart...")                              # Session-Neustart-Einblendung zusammenbauen
+$stringziel = [System.String]::Concat("  Aktuelles Ziel: ", $telnethost, "`n")                                                                                             # Telnet Ziel-Einblendung zusammenbauen
+$stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session-Neustart in: ", $scriptspeed, " Sekunden.`n   Tab schliessen, oder auf Neustart warten...")    # Session-Neustart-Einblendung zusammenbauen
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Einblendungen scripthead
+# Einbleungen scripthead
 function scripthead {
 
     $stringhost = [System.String]::Concat("[ ", $env:UserName, " @ ", $env:computername, " @ ", ((Get-WmiObject Win32_ComputerSystem).Domain), " ", (Get-CimInstance Win32_OperatingSystem | Select-Object Caption), ": ", 
     ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\" -Name ReleaseID).ReleaseId), " ]   ", (Get-Date -Format "dd/MM/yyyy HH:mm"), "`n") 
     $stringhost = $stringhost.replace("{Caption=Microsoft"," ").replace("}", " ")
+
+    if (!$fmode)                                                                                # Wenn Variable Null dann Screen leeren
+    {
+        Clear-Host
+    }
 
     Write-Host $stringhost -ForegroundColor Magenta
 
@@ -39,7 +42,6 @@ function scripthead {
     Write-Host "   \__ \ )__) \__ \\__ \ _)(_  )(_)(  )  ( " -ForegroundColor Red
     Write-Host "   (___/(____)(___/(___/(____)(_____)(_)\_)" -ForegroundColor Red
 
-
     Write-Host "`n"
 
 }
@@ -47,25 +49,37 @@ function scripthead {
 # Telnet Session
 function sessiontelnet ($telnethost, $telnetport, $scriptspeed, $stringreconnect) {
 
-    Clear-Host                                                                                  # Screen leeren
+    Clear-Host                                                                                      # Screen leeren
 
-    New-Object –TypeName System.Net.Sockets.TCPClient –ArgumentList $telnethost,$telnetport     # Telnet Session aufbauen
+    New-Object –TypeName System.Net.Sockets.TCPClient –ArgumentList $telnethost,$telnetport         # Telnet Session aufbauen
 
-    Write-Host $stringreconnect                                                                 # Auf Session-Neustart hinweisen
-    Start-Sleep -Seconds $scriptspeed                                                           # Session Timeout
+    Write-Host $stringreconnect                                                                     # Auf Session-Neustart hinweisen
+    Start-Sleep -Seconds $scriptspeed                                                               # Session Timeout
 
 }
 
 #--- Verarbeitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 scripthead
-Write-Host $stringziel -ForegroundColor Green                                                   # Telnet Ziel-Einblendung
-Start-Sleep - $infospeed                                                                        # Timeout Telnet Ziel-Einblendung
+Write-Host "`n"
+$telnethost = (Read-Host 'Ziel-Host?')                                                              # Telnet Ziel eingeben
+
+$stringziel = [System.String]::Concat("  Aktuelles Ziel: ", $telnethost, "`n ")                     # Telnet Ziel-Einblendung zusammenbauen
+
+scripthead
+Write-Host $stringziel -ForegroundColor Green                                                       # Telnet Ziel-Einblendung zusammenbauen
+$telnetport = Read-Host "Alternativer Telnet-Port? -ENTER fuer Default [$defaulttelnetport]"        # Telnet-Port eigeben - Default-Port: 22
+
+# Wenn Port-Eingabe null dann $defaulttelnetport
+if ([string]::IsNullOrWhiteSpace($telnetport))
+{
+    $telnetport = $defaulttelnetport
+}
 
 # Schleife um Session neuzustarten
 while($true)
 {
-    sessiontelnet $telnethost $telnetport $scriptspeed $stringreconnect                         # Telnet-Session aufbauen und endlos wiederholen
+    sessiontelnet $telnethost $telnetport $scriptspeed $stringreconnect                             # Telnet-Session aufbauen und endlos wiederholen
 }
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

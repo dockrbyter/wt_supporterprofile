@@ -9,13 +9,13 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 $defaultsshport = "22"      # SSH Default Port                          EX  22
-$scriptspeed = "8"          # Timeout session restart                   EX  10
-$fmode = ""                 # Floating Mode (Debugging)                 EX  x
+$scriptspeed = "8"          # Timeout in Sekunden fuer Sessioneustart   EX  10
+$fmode = ""                 # Floating Mode (fuer Debugging)            EX  x
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$stringziel = [System.String]::Concat("  Destination: ", $sshhost, "`n")                                                                                            # SSH Ziel-Einblendung zusammenbauen
-$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session restart in: ", $scriptspeed, " seconds.`n   Close Tab or wait for restart...")             # Session-Neustart-Einblendung zusammenbauen
+$stringziel = [System.String]::Concat("  Aktuelles Ziel: ", $sshhost, "`n")                                                                                             # SSH Ziel-Einblendung zusammenbauen
+$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session-Neustart in: ", $scriptspeed, " Sekunden.`n   Tab schliessen, oder auf Neustart warten...")    # Session-Neustart-Einblendung zusammenbauen
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ function sessionssh ($sshuser, $sshhost, $sshport, $scriptspeed, $stringreconnec
 
 scripthead
 Write-Host "`n"
-$sshhost = (Read-Host 'Target Host?')                                                       # SSH Ziel eingeben
+$sshhost = (Read-Host 'Ziel-Host?')                                                         # SSH Ziel eingeben
 
 scripthead
 Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
@@ -70,7 +70,7 @@ $sshuser = (Read-Host 'User?')                                                  
 
 scripthead
 Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
-$sshport = Read-Host "Alternative SSH-Port? -ENTER for Default [$defaultsshport]"           # SSH-Port eigeben - Default-Port: 22
+$sshport = Read-Host "Alternativer SSH-Port? -ENTER fuer Default [$defaultsshport]"         # SSH-Port eigeben - Default-Port: 22
 
 # Wenn Port-Eingabe null dann $defaultsshport
 if ([string]::IsNullOrWhiteSpace($sshport))

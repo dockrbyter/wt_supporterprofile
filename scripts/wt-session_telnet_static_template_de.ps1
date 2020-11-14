@@ -11,13 +11,13 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 $telnetport = "22"                      # Telnet Port                               EX  22
 $telnethost = "192.168.178.100"         # Target Address                            EX  192.168.178.100
 
-$scriptspeed = "8"                      # Timeout session restart                   EX  10
-$infospeed = "1.5"                      # Text timeout                              EX  1.5
+$scriptspeed = "8"                      # Timeout in Sekunden fuer Sessio Neustart  EX  10
+$infospeed = "1.5"                      # Timeout in Sekunden fuer Textausegabe     EX  1.5
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$stringziel = [System.String]::Concat("`n  Destination: ", $telnethost, "`n   Port: ", $telnetport, "`n   ...starting session...")                                                      # Telnet Ziel-Einblendung zusammenbauen
-$stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session restart in: ", $scriptspeed, " Seconds.`n   Close Tab or wait for restart...")                              # Session-Neustart-Einblendung zusammenbauen
+$stringziel = [System.String]::Concat("`n  Ziel: ", $telnethost, "`n   Port: ", $telnetport, "`n   ...starte Session...")                                                   # Telnet Ziel-Einblendung zusammenbauen
+$stringreconnect = [System.String]::Concat("`n`n   Telnet-EXIT `n   Session-Neustart in: ", $scriptspeed, " Sekunden.`n   Tab schliessen, oder auf Neustart warten...")     # Session-Neustart-Einblendung zusammenbauen
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

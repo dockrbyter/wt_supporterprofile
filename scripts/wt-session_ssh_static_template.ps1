@@ -12,13 +12,13 @@ $sshport = "22"                     # SSH Port                                  
 $sshhost = "192.168.178.100"        # Target Address                            EX  192.168.178.100
 $sshuser = "root"                   # User Name                                 EX  root
 
-$scriptspeed = "8"                  # Timeout in Sekunden fuer Sessio Neustart  EX  10
-$infospeed = "1.5"                  # Timeout in Sekunden fuer Session Start    EX  1.5
+$scriptspeed = "8"                  # Timeout session restart                   EX  10
+$infospeed = "1.5"                  # Text timeout                              EX  1.5
 
 #--- Vorbereitung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-$stringziel = [System.String]::Concat("`n  Ziel: ", $sshhost, "`n   User: ", $sshuser, "`n   ...starte Session...")                                                     # SSH Ziel-Einblendung zusammenbauen
-$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session-Neustart in: ", $scriptspeed, " Sekunden.`n   Tab schliessen, oder auf Neustart warten...")    # Session-Neustart-Einblendung zusammenbauen
+$stringziel = [System.String]::Concat("`n  Destination: ", $sshhost, "`n   User: ", $sshuser, "`n   ...starting session...")                                                     # SSH Ziel-Einblendung zusammenbauen
+$stringreconnect = [System.String]::Concat("`n`n   SSH-EXIT `n   Session restart in: ", $scriptspeed, " seconds.`n   Close Tab or wait for restart...")    # Session-Neustart-Einblendung zusammenbauen
 
 #--- Funktionen ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

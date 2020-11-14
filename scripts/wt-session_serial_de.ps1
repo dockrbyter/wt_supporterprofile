@@ -8,8 +8,8 @@ https://github.com/thelamescriptkiddiemax/wt_supporterprofile
 #>
 #--- Variablen ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[INT]$defaultbaud = "9600"          # Default Baud rate                 EX  9600
-$fmode = ""                         # Floating Mode (Debugging)         EX  x
+[INT]$defaultbaud = "9600"          # Default Baud Rate                 EX  9600
+$fmode = ""                         # Floating Mode (fuer Debugging)    EX  x
 $scriptspeed = "5"                  # Text timeout                      EX  1
 
 
@@ -71,27 +71,27 @@ if (!$serialport)                                                               
 {
     
     scripthead                                                                                                                                      # Scripthead ausgeben
-    Write-Host "       CAN'T FIND COM-PORT! `n       Check connection! `n" -ForegroundColor White
-    Write-Host "    Please close this tab and reopen it when connection is established." -ForegroundColor White
+    Write-Host "       KEINE COM-VERBINDUNG GEFUNDEN! `n       Verbindung pruefen! `n" -ForegroundColor White
+    Write-Host "    Bitte schliessen Sie diesen Tab und oeffnen ihn nach Wiederherstellung der Verbindung erneut." -ForegroundColor White
 
     Start-Sleep -Seconds 30                                                                                                                         # Warte 30 Sekunden
     Exit                                                                                                                                            # Schliesse Session
 }
 
-$stringziel = [System.String]::Concat("`n  active COM-Port: ", $serialport, "`n")                                                                  # Ausgabe vorhandene Com Verbindung zusammenbauen
+$stringziel = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport, "`n")                                                                  # Ausgabe vorhandene Com Verbindung zusammenbauen
 
 scripthead                                                                                                                                          # Scripthead ausgeben
 Write-Host $stringziel                                                                                                                              # Ausgabe vorhandene Com Verbindung
 Write-Host "   Baudrates (bits per second):"
 Write-Host "   110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000"                                           # Moegliche Baud Rates
-[INT]$baudspeed = Read-Host "Baudrate? -ENTER for Default [$defaultbaud]"                                                                          # Baud Rate eingeben
+[INT]$baudspeed = Read-Host "Baudrate? -ENTER fuer Default [$defaultbaud]"                                                                          # Baud Rate eingeben
 
 if ([string]::IsNullOrWhiteSpace($baudspeed))                                                                                                       # Wenn Baud-Eingabe null dann $defaultbaud
 {
     $baudspeed = $defaultbaud
 }
 
-$stringbaud = [System.String]::Concat("`n  Active COM-Port: ", $serialport,"`n  Baudrate: ", $baudspeed, "`n`n  Establishing session...`n")         # Ausgabe vorhandene Com Verbindung mit Baud Rate zusammenbauen
+$stringbaud = [System.String]::Concat("`n  Aktiver COM-Port: ", $serialport,"`n  Baudrate: ", $baudspeed, "`n`n  Baue Verbindung auf...`n")         # Ausgabe vorhandene Com Verbindung mit Baud Rate zusammenbauen
 
 scripthead                                                                                                                                          # Scripthead ausgeben
 Write-Host $stringbaud                                                                                                                              # Ausgabe vorhandene Com Verbindung mit Baud Rate
