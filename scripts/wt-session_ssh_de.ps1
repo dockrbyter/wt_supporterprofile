@@ -66,11 +66,11 @@ $sshhost = (Read-Host 'Ziel-Host?')                                             
 
 scripthead
 Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
-$sshuser = (Read-Host 'User?')                                                              # SSH Benutzer eingeben
+$sshport = Read-Host "Alternativer SSH-Port? -ENTER fuer Default [$defaultsshport]"         # SSH-Port eigeben - Default-Port: 22
 
 scripthead
 Write-Host $stringziel -ForegroundColor Green                                               # SSH Ziel-Einblendung zusammenbauen
-$sshport = Read-Host "Alternativer SSH-Port? -ENTER fuer Default [$defaultsshport]"         # SSH-Port eigeben - Default-Port: 22
+$sshuser = (Read-Host 'User?')                                                              # SSH Benutzer eingeben
 
 # Wenn Port-Eingabe null dann $defaultsshport
 if ([string]::IsNullOrWhiteSpace($sshport))
