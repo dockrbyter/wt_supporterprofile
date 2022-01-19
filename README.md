@@ -31,7 +31,7 @@ If this file not exits, you have nothing to lose.
 # Add Static Connection Profiles
 You have two options to make static connection profiles. In booth options you have to add a new profile to the list starting at Line 31.
 
-Option A - quick n' dirty - use the examples below
+## Option A - quick n' dirty - use the examples below
 
 Edit username addres, tabTidle, etc. according to your environment and paste them to the profile list starting at line 31.
 Don't forget to add a "," at the in front of the next profile - of course without "   ;)
@@ -74,12 +74,13 @@ Static SSH to IP 192.168.178.110
                 "colorScheme": "Ollie"
           }
 
-´´´ 
+```
 
-Option B - make a copy from the session script
-
+## Option B - make a copy from the session script
+```
 If you want to use the automatically session restart and stuff like that, copy the SSH profile, paste it to the profile list
 and edit username address, tabTidle, etc. according to your environment.
 Then make a copy from the session script "wt-session_ssh_static_template.ps1" and rename it like "wt-session_ssh_static_SRV-01.ps1" (or what ever you want).
 Now go to your new created profile in "settings.json" and change the scriptname in the commandline parameter to the name you have set on you copy.
 Finaly edit the variables (lines 10 to 18) in your session script and you good to go. For more information scroll down to "Script Settings".
+```
