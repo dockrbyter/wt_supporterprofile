@@ -22,8 +22,10 @@ Telnet session:
 
 # Setup
 Download the repository an run setup.ps1 as administrator. 
-This will override your PowerShell profile! This could be found at 
-'%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'. 
+This will override your PowerShell profile! This could be found at:
+```
+'%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+```
 If this file not exits, you have nothing to lose.
 
 
