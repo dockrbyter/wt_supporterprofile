@@ -99,8 +99,8 @@
                 "tabTitle": "Telnet"
             },
             {
-                "acrylicOpacity": 0.80000000000000004,
-                "colorScheme": "Campbell Powershell",
+                "acrylicOpacity": 0.9,
+                "colorScheme": "Solarized Dark",
                 "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\wtprofile\\wt-session_pss.ps1\"",
                 "font": 
                 {
