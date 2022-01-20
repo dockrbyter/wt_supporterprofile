@@ -101,6 +101,19 @@
             {
                 "acrylicOpacity": 0.80000000000000004,
                 "colorScheme": "Campbell Powershell",
+                "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\wtprofile\\wt-session_pss.ps1\"",
+                "font": 
+                {
+                    "face": "DroidSansMono Nerd Font"
+                },
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "PS Session",
+                "tabTitle": "PS Session"
+            },
+            {
+                "acrylicOpacity": 0.80000000000000004,
+                "colorScheme": "Campbell Powershell",
                 "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\wtprofile\\pss-summoner.ps1\"",
                 "font": 
                 {
