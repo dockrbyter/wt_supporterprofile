@@ -42,6 +42,7 @@ function sessionpss {
     Clear-Host                                  # Clear Screen
     
     New-PSSession -ComputerName $psshost        # Establish PSSession
+    Start-Sleep -Seconds 5
 }
 
 #--- Processing ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
