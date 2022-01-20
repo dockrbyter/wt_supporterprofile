@@ -124,3 +124,17 @@ notepad $PROFILE
 ## Tab Profiles
 Feel free to chage the values of any tab profiles property "hidden". So you could show and hide some features like the CMD shell, which is by default hidden.
 
+## Relevant Links
+https://docs.microsoft.com/en-us/windows/terminal/
+https://docs.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup
+https://docs.microsoft.com/en-us/windows/terminal/samples
+https://docs.microsoft.com/en-us/windows/terminal/panes
+
+https://ohmyposh.dev/
+https://ohmyposh.dev/docs/windows
+
+https://windowsterminalthemes.dev/
+
+https://www.nerdfonts.com/font-downloads
+
+https://fonts.google.com/icons
