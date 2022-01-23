@@ -154,8 +154,9 @@
                 },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
-                "name": "Eingabeaufforderung",
-                "padding": "5, 5, 5, 5"
+                "name": "Windows Command",
+                "padding": "5, 5, 5, 5",
+                "tabTitle": "CMD"
             }
         ]
     },
