@@ -140,3 +140,6 @@ https://www.nerdfonts.com/font-downloads
 https://fonts.google.com/icons
 
 https://pixabay.com/de/photos/glas-scifi-violett-ultraviolet-3389935/
+
+https://cliply.co/clip/static-noise/
+
