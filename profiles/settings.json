@@ -92,21 +92,39 @@
                 {
                     "face": "DroidSansMono Nerd Font"
                 },
-                "hidden": false,
+                "hidden": true,
                 "icon": "C:\\Users\\Public\\wtprofile\\outline_settings_ethernet_white_24dp.ico",
                 "name": "Telnet Session",
                 "padding": "5, 5, 5, 5",
                 "tabTitle": "Telnet"
             },
             {
-                "acrylicOpacity": 0.9,
-                "colorScheme": "Solarized Dark",
+                "acrylicOpacity": 0.7,
+                "backgroundImage": "C:\\Users\\Public\\wtprofile\\402107790_STATIC_NOISE_400.gif",
+                "backgroundImageOpacity": 0.8,
+                "colorScheme": "CyberPunk2089",
+                "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\wtprofile\\wt-session_serial.ps1\"",
+                "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": true,
+                "font": 
+                {
+                    "face": "DroidSansMono Nerd Font"
+                },
+                "hidden": true,
+                "icon": "C:\\Users\\Public\\wtprofile\\serial.ico",
+                "name": "Serial Session",
+                "padding": "5, 5, 5, 5",
+                "tabTitle": "Serial"
+            },
+            {
+                "acrylicOpacity": 0.80000000000000004,
+                "colorScheme": "Campbell Powershell",
                 "commandline": "powershell.exe -Command & \"C:\\Users\\Public\\wtprofile\\wt-session_pss.ps1\"",
                 "font": 
                 {
                     "face": "DroidSansMono Nerd Font"
                 },
-                "hidden": false,
+                "hidden": true,
                 "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
                 "name": "PS Session",
                 "tabTitle": "PS Session"
@@ -141,7 +159,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
