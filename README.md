@@ -31,7 +31,7 @@ https://gist.githubusercontent.com/thelamescriptkiddiemax/5df9b3ef23ea10e6ec3cc8
 ##### And much more! :D
 
 # Setup
-Download the repository, extract the whole folder and run inside wtprofilesetup.ps1 as administrator.
+Make shure Windows Terminal is installed. Then download the repositor, extract the whole folder and run inside wtprofilesetup.ps1 as administrator.
 ```
 .\wtprofilesetup.ps1
 ```
