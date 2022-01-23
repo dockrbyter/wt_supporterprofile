@@ -151,3 +151,5 @@ https://www.nerdfonts.com/font-downloads
 https://fonts.google.com/icons
 https://pixabay.com/de/photos/glas-scifi-violett-ultraviolet-3389935/
 https://cliply.co/clip/static-noise/
+
+https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701#activetab=pivot:overviewtab
