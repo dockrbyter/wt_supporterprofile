@@ -31,7 +31,7 @@ https://gist.githubusercontent.com/thelamescriptkiddiemax/5df9b3ef23ea10e6ec3cc8
 ##### And much more! :D
 
 # Setup
-Make shure Windows Terminal is installed. Then download the repositor, extract the whole folder and run inside wtprofilesetup.ps1 as administrator.
+Make shure Windows Terminal is installed. Then download the repository, extract the whole folder and run inside wtprofilesetup.ps1 as administrator.
 ```
 .\wtprofilesetup.ps1
 ```
@@ -135,6 +135,14 @@ Feel free to chage the values of any tab profiles property "hidden". So you coul
  - Telnet
  - Serial
  - PowerShell Session
+
+## Split Pane
+```
+    Shift Alt D                           -   Duplicate current Tab
+    Shift Alt -                           -   New Pane vertical - Default Shell (PowerShell)
+    Shift Alt +                           -   New Pane horizontally - Default Shell (PowerShell)
+    Shift Alt Left / Right / Up / Down    -   Move active Pane
+```
 
 ## Relevant Links
 https://docs.microsoft.com/en-us/windows/terminal/
