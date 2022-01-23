@@ -70,8 +70,8 @@ function puttyseri ($SCRIPT:defaultbaud, $SCRIPT:dabi, $SCRIPT:stobi, $SCRIPT:pa
 
     putty.exe -sercfg $baudspeed,$SCRIPT:dabi,$SCRIPT:pari,$SCRIPT:stobi,$SCRIPT:flco -serial $serialport                                               # Call Putty
     Start-Sleep -Seconds 3
-    Write-Host "   Connection established!   " -ForegroundColor Green -BackgroundColor White
-    Start-Sleep -Seconds 2
+    Write-Host "   Connection established!   " -ForegroundColor Red -BackgroundColor Gray
+    Start-Sleep -Seconds 4
     Exit
 }
 
