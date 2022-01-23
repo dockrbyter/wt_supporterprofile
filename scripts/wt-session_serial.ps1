@@ -42,8 +42,8 @@ function puttyseri ($SCRIPT:defaultbaud, $SCRIPT:dabi, $SCRIPT:stobi, $SCRIPT:pa
 
     if (!$serialport) {                                                                                                                                 # Restart Script if there is no active COM-Port
         scripthead
-        Write-Host "       CAN'T FIND ANY ACTIVE COM-PORT! `n       Check your connection! `n" -ForegroundColor White
-        Write-Host "    Bitte schliessen Sie diesen Tab und oeffnen ihn nach Wiederherstellung der Verbindung erneut." -ForegroundColor White
+        Write-Host "       CAN'T FIND ANY ACTIVE COM-PORT! `n       Check your connection! `n" -ForegroundColor Yellow
+        Write-Host "    Next try in 20 second." -ForegroundColor Yellow
 
         Start-Sleep -Seconds 20                                                                                                                         # Wait some seconds
         Clear-Host
